@@ -7,9 +7,11 @@
         v-model="slideNav">
         <v-list dense>
             <v-list-tile
-            v-for="item in menutItems"
-            :key="item.title"
-            >
+                v-for="item in menutItems"
+                :key="item.title"
+                router
+                :to="item.link"
+                >
                 <v-list-tile-action>
                     <v-icon>{{ item.icon }}</v-icon>
                 </v-list-tile-action>
@@ -19,14 +21,21 @@
     </v-navigation-drawer>
     <v-toolbar>
         <v-toolbar-side-icon @click="slideNav = !slideNav" class="hidden-sm-and-up"></v-toolbar-side-icon>        
-        <v-toolbar-title>WhatNews</v-toolbar-title>
+        <v-toolbar-title>
+            <router-link to="/" tag="span" style="cursor: pointer">
+            WhatNews
+            </router-link>
+        </v-toolbar-title>
         <v-spacer></v-spacer>
         <v-toolbar-items 
             v-for="(item, i) in menutItems"
             :key="i"
             class="hidden-xs-only"
-        >
-            <v-btn>
+            >
+            <v-btn
+            router
+            :to="item.link"
+            >
                 <v-icon flat left>{{ item.icon }}</v-icon>
                 {{ item.title }}
             </v-btn>
@@ -44,8 +53,8 @@ export default {
         return {
             slideNav: false,
             menutItems:[
-                { icon: 'add_circle', title: 'Create Story' },
-                { icon: 'face', title: 'Sign Up / Sign In' },                
+                { icon: 'add_circle', title: 'Create Story', link: '/news/create' },
+                { icon: 'face', title: 'Sign Up / Sign In', link: '/signin' },                
             ]
         }
     }

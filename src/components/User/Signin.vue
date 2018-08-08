@@ -16,7 +16,8 @@
                 </v-form>
               </v-card-text>
               <v-card-actions>
-                <v-spacer></v-spacer>
+                <router-link to='/signup'>Create Account</router-link>
+                <v-spacer></v-spacer>      
                 <v-btn color="primary">Login</v-btn>
               </v-card-actions>
             </v-card>
@@ -24,6 +25,7 @@
         </v-layout>
       </v-container>
     </v-content>
+   
   </v-app>
 </template>
 
