@@ -1,96 +1,53 @@
 <template>
-  <v-app>
-    <v-navigation-drawer
-      persistent
-      :mini-variant="miniVariant"
-      :clipped="clipped"
-      v-model="drawer"
-      enable-resize-watcher
-      fixed
-      app
-    >
-      <v-list>
-        <v-list-tile
-          value="true"
-          v-for="(item, i) in items"
-          :key="i"
+    <v-app>
+    <v-navigation-drawer 
+        fixed
+        clipped
+        app
+        v-model="slideNav">
+        <v-list dense>
+            <v-list-tile
+            v-for="item in menutItems"
+            :key="item.title"
+            >
+                <v-list-tile-action>
+                    <v-icon>{{ item.icon }}</v-icon>
+                </v-list-tile-action>
+                <v-list-tile-content  v-text="item.title"></v-list-tile-content>
+            </v-list-tile>
+        </v-list>
+    </v-navigation-drawer>
+    <v-toolbar>
+        <v-toolbar-side-icon @click="slideNav = !slideNav" class="hidden-sm-and-up"></v-toolbar-side-icon>        
+        <v-toolbar-title>WhatNews</v-toolbar-title>
+        <v-spacer></v-spacer>
+        <v-toolbar-items 
+            v-for="(item, i) in menutItems"
+            :key="i"
+            class="hidden-xs-only"
         >
-          <v-list-tile-action>
-            <v-icon v-html="item.icon"></v-icon>
-          </v-list-tile-action>
-          <v-list-tile-content>
-            <v-list-tile-title v-text="item.title"></v-list-tile-title>
-          </v-list-tile-content>
-        </v-list-tile>
-      </v-list>
-    </v-navigation-drawer>
-    <v-toolbar
-      app
-      :clipped-left="clipped"
-    >
-      <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
-      <v-btn icon @click.stop="miniVariant = !miniVariant">
-        <v-icon v-html="miniVariant ? 'chevron_right' : 'chevron_left'"></v-icon>
-      </v-btn>
-      <v-btn icon @click.stop="clipped = !clipped">
-        <v-icon>web</v-icon>
-      </v-btn>
-      <v-btn icon @click.stop="fixed = !fixed">
-        <v-icon>remove</v-icon>
-      </v-btn>
-      <v-toolbar-title v-text="title"></v-toolbar-title>
-      <v-spacer></v-spacer>
-      <v-btn icon @click.stop="rightDrawer = !rightDrawer">
-        <v-icon>menu</v-icon>
-      </v-btn>
+            <v-btn>
+                <v-icon flat left>{{ item.icon }}</v-icon>
+                {{ item.title }}
+            </v-btn>
+        </v-toolbar-items>
     </v-toolbar>
-    <v-content>
-      <HelloWorld/>
-    </v-content>
-    <v-navigation-drawer
-      temporary
-      :right="right"
-      v-model="rightDrawer"
-      fixed
-      app
-    >
-      <v-list>
-        <v-list-tile @click="right = !right">
-          <v-list-tile-action>
-            <v-icon>compare_arrows</v-icon>
-          </v-list-tile-action>
-          <v-list-tile-title>Switch drawer (click me)</v-list-tile-title>
-        </v-list-tile>
-      </v-list>
-    </v-navigation-drawer>
-    <v-footer :fixed="fixed" app>
-      <span>&copy; 2017</span>
-    </v-footer>
-  </v-app>
+    <main>
+      <router-view></router-view>
+    </main>
+    </v-app>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld'
-
 export default {
-  name: 'App',
-  components: {
-    HelloWorld
-  },
-  data () {
-    return {
-      clipped: false,
-      drawer: true,
-      fixed: false,
-      items: [{
-        icon: 'bubble_chart',
-        title: 'Inspire'
-      }],
-      miniVariant: false,
-      right: true,
-      rightDrawer: false,
-      title: 'Vuetify.js'
+    data() {
+        return {
+            slideNav: false,
+            menutItems:[
+                { icon: 'add_circle', title: 'Create Story' },
+                { icon: 'face', title: 'Sign Up / Sign In' },                
+            ]
+        }
     }
-  }
 }
 </script>
