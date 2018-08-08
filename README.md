@@ -1,4 +1,6 @@
 # news-vue
+this app using this [API](https://github.com/azkiya/rest-api-news)
+
 
 ## Project setup
 ```
