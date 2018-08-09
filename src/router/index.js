@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Home from '@/components/Home'
 import CreateNews from '@/components/News/CreateNews'
+import SingleNews from '@/components/News/SingleNews'
 import Profile from '@/components/User/Profile'
 import Signin from '@/components/User/Signin'
 import Signup from '@/components/User/Signup'
@@ -20,6 +21,11 @@ export default new Router({
             path: '/news/create',
             name: 'CreateNews',
             component: CreateNews
+        },
+        {
+            path: '/news/:id',
+            name: 'SingleNews',
+            component: SingleNews
         },
         {
             path: '/profile',

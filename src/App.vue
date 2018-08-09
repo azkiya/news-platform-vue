@@ -9,7 +9,6 @@
             <v-list-tile
                 v-for="item in menutItems"
                 :key="item.title"
-                router
                 :to="item.link"
                 >
                 <v-list-tile-action>
@@ -33,7 +32,6 @@
             class="hidden-xs-only"
             >
             <v-btn
-            router
             :to="item.link"
             >
                 <v-icon flat left>{{ item.icon }}</v-icon>
